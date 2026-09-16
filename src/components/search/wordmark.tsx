@@ -1,26 +1,46 @@
 import { cn } from "@/lib/utils"
 
 const letters = [
-  { char: "n", color: "text-[#8ab4f8]" },
-  { char: "e", color: "text-[#f28b82]" },
-  { char: "x", color: "text-[#fdd663]" },
-  { char: "o", color: "text-[#81c995]" },
+  { char: "n", token: "--wordmark-1" },
+  { char: "e", token: "--wordmark-2" },
+  { char: "x", token: "--wordmark-3" },
+  { char: "o", token: "--wordmark-4" },
 ] as const
 
-export function Wordmark({ className }: { className?: string }) {
+export function Wordmark({
+  className,
+  variant = "google",
+}: {
+  className?: string
+  variant?: "google" | "mono" | "gradient"
+}) {
   return (
     <h1
       className={cn(
         "select-none text-7xl font-normal tracking-tight sm:text-8xl",
+        variant === "mono" && "text-foreground",
+        variant === "gradient" && "text-transparent",
         className
       )}
+      style={
+        variant === "gradient"
+          ? {
+              backgroundImage:
+                "linear-gradient(90deg, var(--wordmark-1), var(--wordmark-2), var(--wordmark-3))",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+            }
+          : undefined
+      }
       aria-label="nexo"
     >
-      {letters.map((letter) => (
-        <span key={letter.char} className={letter.color}>
-          {letter.char}
-        </span>
-      ))}
+      {variant === "google"
+        ? letters.map((letter) => (
+            <span key={letter.char} style={{ color: `var(${letter.token})` }}>
+              {letter.char}
+            </span>
+          ))
+        : "nexo"}
     </h1>
   )
 }

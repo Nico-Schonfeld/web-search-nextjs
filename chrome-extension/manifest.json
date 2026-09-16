@@ -1,0 +1,9 @@
+{
+  "manifest_version": 3,
+  "name": "nexo — nueva pestaña",
+  "version": "1.0.0",
+  "description": "Abre nexo al crear una pestaña o ventana nueva en Chrome.",
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  }
+}

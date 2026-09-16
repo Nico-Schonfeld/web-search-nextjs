@@ -23,7 +23,7 @@ function ShortcutFavicon({ url, title }: { url: string; title: string }) {
 
   if (failed || !src) {
     return (
-      <span className="text-sm font-medium text-white/80">
+      <span className="text-sm font-medium text-foreground/80">
         {title.slice(0, 1).toUpperCase()}
       </span>
     )
@@ -50,7 +50,7 @@ function ShortcutItem({
   onRemove: () => void
 }) {
   const className =
-    "group relative flex w-[84px] flex-col items-center gap-2 rounded-xl p-2 text-center transition-colors hover:bg-white/5"
+    "group relative flex w-[84px] flex-col items-center gap-2 rounded-xl p-2 text-center transition-colors hover:bg-foreground/5"
 
   return (
     <ContextMenu>
@@ -58,10 +58,10 @@ function ShortcutItem({
         render={<div className="group relative w-[84px]" />}
       >
         <a href={shortcut.url} className={className}>
-          <span className="relative flex size-12 items-center justify-center rounded-full bg-white/8 ring-1 ring-white/10">
+          <span className="relative flex size-12 items-center justify-center rounded-full bg-foreground/8 ring-1 ring-foreground/10">
             <ShortcutFavicon url={shortcut.url} title={shortcut.title} />
           </span>
-          <span className="line-clamp-2 w-full text-xs text-white/80">
+          <span className="line-clamp-2 w-full text-xs text-foreground/80">
             {shortcut.title}
           </span>
         </a>
@@ -113,15 +113,15 @@ export function ShortcutRow({
             render={
               <button
                 type="button"
-                className="flex w-[84px] flex-col items-center gap-2 rounded-xl p-2 text-center transition-colors hover:bg-white/5"
+                className="flex w-[84px] flex-col items-center gap-2 rounded-xl p-2 text-center transition-colors hover:bg-foreground/5"
                 onClick={onAdd}
               />
             }
           >
-            <span className="flex size-12 items-center justify-center rounded-full bg-white/8 ring-1 ring-white/10">
-              <PlusIcon className="size-5 text-white/70" />
+            <span className="flex size-12 items-center justify-center rounded-full bg-foreground/8 ring-1 ring-foreground/10">
+              <PlusIcon className="size-5 text-foreground/70" />
             </span>
-            <span className="line-clamp-2 w-full text-xs text-white/80">
+            <span className="line-clamp-2 w-full text-xs text-foreground/80">
               Agregar
             </span>
           </TooltipTrigger>

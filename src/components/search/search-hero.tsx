@@ -85,8 +85,8 @@ export function SearchHero({
         submitSearch()
       }}
     >
-      <InputGroup className="h-14 rounded-full border-transparent bg-white text-zinc-900 shadow-[0_1px_6px_rgba(32,33,36,0.28)] dark:bg-white dark:has-[[data-slot=input-group-control]:focus-visible]:border-transparent dark:has-[[data-slot=input-group-control]:focus-visible]:ring-[#8ab4f8]/40">
-        <InputGroupAddon className="pl-4 text-zinc-500">
+      <InputGroup className="h-14 rounded-full border-transparent bg-[var(--search-bg)] text-[var(--search-fg)] shadow-[0_1px_6px_rgba(32,33,36,0.18)] ring-1 ring-foreground/8 has-[[data-slot=input-group-control]:focus-visible]:ring-primary/40 dark:bg-[var(--search-bg)]">
+        <InputGroupAddon className="pl-4 text-[var(--search-muted)]">
           <SearchIcon className="size-5" />
         </InputGroupAddon>
         <InputGroupInput
@@ -96,7 +96,7 @@ export function SearchHero({
           name="q"
           value={query}
           placeholder="Buscar en Google o en tus favoritos"
-          className="h-14 text-[16px] text-zinc-900 placeholder:text-zinc-500 md:text-[16px]"
+          className="h-14 text-[16px] text-[var(--search-fg)] placeholder:text-[var(--search-muted)] md:text-[16px]"
           onChange={(event) => onQueryChange(event.target.value)}
           onKeyDown={(event) => {
             if (event.key === "ArrowDown") {
@@ -122,7 +122,7 @@ export function SearchHero({
           <InputGroupButton
             type="button"
             variant="ghost"
-            className="h-10 rounded-full px-3 text-sm text-[#1a73e8] hover:bg-blue-50 hover:text-[#174ea6]"
+            className="h-10 rounded-full px-3 text-sm text-primary hover:bg-primary/10 hover:text-primary"
             onClick={submitSearch}
           >
             Google
@@ -132,8 +132,8 @@ export function SearchHero({
       </InputGroup>
 
       {matches.length > 0 ? (
-        <div className="absolute top-[calc(100%+8px)] z-20 w-full overflow-hidden rounded-2xl bg-white text-zinc-900 shadow-[0_4px_24px_rgba(32,33,36,0.18)] ring-1 ring-zinc-200">
-          <p className="px-4 pt-3 pb-1 text-xs font-medium tracking-wide text-zinc-500 uppercase">
+        <div className="absolute top-[calc(100%+8px)] z-20 w-full overflow-hidden rounded-2xl bg-[var(--search-bg)] text-[var(--search-fg)] shadow-[0_4px_24px_rgba(32,33,36,0.18)] ring-1 ring-foreground/10">
+          <p className="px-4 pt-3 pb-1 text-xs font-medium tracking-wide text-[var(--search-muted)] uppercase">
             En tus favoritos
           </p>
           <ul className="p-1.5">
@@ -143,12 +143,12 @@ export function SearchHero({
                   type="button"
                   className={cn(
                     "flex w-full items-center gap-3 rounded-xl px-3 py-2 text-left transition-colors",
-                    index === activeIndex ? "bg-zinc-100" : "hover:bg-zinc-50"
+                    index === activeIndex ? "bg-foreground/8" : "hover:bg-foreground/5"
                   )}
                   onMouseEnter={() => setActiveIndex(index)}
                   onClick={() => goToLink(link)}
                 >
-                  <span className="flex size-8 items-center justify-center rounded-full bg-zinc-100">
+                  <span className="flex size-8 items-center justify-center rounded-full bg-foreground/8">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={faviconUrl(link.url, 32)}
@@ -162,7 +162,7 @@ export function SearchHero({
                     <span className="block truncate text-sm font-medium">
                       {link.title}
                     </span>
-                    <span className="block truncate text-xs text-zinc-500">
+                    <span className="block truncate text-xs text-[var(--search-muted)]">
                       {hostnameOf(link.url)}
                     </span>
                   </span>
@@ -175,9 +175,9 @@ export function SearchHero({
           </ul>
           <button
             type="submit"
-            className="flex w-full items-center gap-2 border-t border-zinc-200 px-4 py-3 text-left text-sm text-zinc-600 hover:bg-zinc-50"
+            className="flex w-full items-center gap-2 border-t border-foreground/10 px-4 py-3 text-left text-sm text-[var(--search-muted)] hover:bg-foreground/5"
           >
-            <SearchIcon className="size-4 text-[#1a73e8]" />
+            <SearchIcon className="size-4 text-primary" />
             Buscar “{query}” en Google
           </button>
         </div>

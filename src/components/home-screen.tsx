@@ -5,9 +5,12 @@ import {
   ArrowDownAZIcon,
   BookmarkPlusIcon,
   FolderPlusIcon,
+  ImageIcon,
   LayoutGridIcon,
   ListIcon,
+  MailIcon,
   MoreHorizontalIcon,
+  PaletteIcon,
   PanelsTopLeftIcon,
   RotateCcwIcon,
   SearchIcon,
@@ -23,6 +26,8 @@ import { AddShortcutDialog } from "@/components/search/add-shortcut-dialog"
 import { SearchHero } from "@/components/search/search-hero"
 import { ShortcutRow } from "@/components/search/shortcut-row"
 import { Wordmark } from "@/components/search/wordmark"
+import { CustomizePanel } from "@/components/theme/customize-panel"
+import { useAppearance } from "@/components/theme/appearance-provider"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -71,10 +76,12 @@ export function HomeScreen() {
     toggleLink,
     remove: removeShortcut,
   } = useShortcuts()
+  const { appearance } = useAppearance()
   const [query, setQuery] = useState("")
   const [importOpen, setImportOpen] = useState(false)
   const [shortcutOpen, setShortcutOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
+  const [customizeOpen, setCustomizeOpen] = useState(false)
   const [focusedFolderId, setFocusedFolderId] = useState<string>()
   const [view, setView] = useState<BookmarkView>("cards")
 
@@ -100,25 +107,64 @@ export function HomeScreen() {
 
   return (
     <div className="flex min-h-full flex-1 flex-col">
-      <header className="flex items-center justify-end gap-2 px-4 py-3">
-        <a
-          href="https://mail.google.com"
-          className="text-sm text-white/70 transition-colors hover:text-white"
-        >
-          Gmail
-        </a>
-        <a
-          href="https://www.google.com/imghp"
-          className="text-sm text-white/70 transition-colors hover:text-white"
-        >
-          Imágenes
-        </a>
+      <header className="flex items-center justify-end gap-1 px-3 py-2.5 sm:px-4">
+        {appearance.showGmail ? (
+          <Tooltip>
+            <TooltipTrigger
+              render={
+                <a
+                  href="https://mail.google.com"
+                  aria-label="Gmail"
+                  className="inline-flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                />
+              }
+            >
+              <MailIcon className="size-4" />
+            </TooltipTrigger>
+            <TooltipContent>Gmail</TooltipContent>
+          </Tooltip>
+        ) : null}
+        {appearance.showImages ? (
+          <Tooltip>
+            <TooltipTrigger
+              render={
+                <a
+                  href="https://www.google.com/imghp"
+                  aria-label="Imágenes de Google"
+                  className="inline-flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                />
+              }
+            >
+              <ImageIcon className="size-4" />
+            </TooltipTrigger>
+            <TooltipContent>Imágenes</TooltipContent>
+          </Tooltip>
+        ) : null}
+        <Tooltip>
+          <TooltipTrigger
+            render={
+              <Button
+                variant="ghost"
+                size="icon-sm"
+                aria-label="Personalizar apariencia"
+                onClick={() => setCustomizeOpen(true)}
+              />
+            }
+          >
+            <PaletteIcon />
+          </TooltipTrigger>
+          <TooltipContent>Personalizar</TooltipContent>
+        </Tooltip>
         <DropdownMenu>
           <DropdownMenuTrigger render={<Button variant="ghost" size="icon-sm" />}>
             <MoreHorizontalIcon />
             <span className="sr-only">Menú</span>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-52">
+            <DropdownMenuItem onClick={() => setCustomizeOpen(true)}>
+              <PaletteIcon />
+              Personalizar
+            </DropdownMenuItem>
             <DropdownMenuItem onClick={() => setImportOpen(true)}>
               <UploadIcon />
               Importar favoritos
@@ -171,7 +217,7 @@ export function HomeScreen() {
       </header>
 
       <section className="flex flex-col items-center px-4 pt-[12vh] pb-16 sm:pt-[16vh]">
-        <Wordmark />
+        <Wordmark variant={appearance.wordmark} />
         <div className="mt-8 w-full max-w-xl">
           <SearchHero data={data} query={query} onQueryChange={setQuery} />
         </div>
@@ -192,12 +238,9 @@ export function HomeScreen() {
           <>
             <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <p className="text-xs font-medium tracking-[0.2em] text-white/45 uppercase">
+                <p className="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">
                   Tus sitios
                 </p>
-                <h2 className="text-lg font-medium text-white/90">
-                  Vista previa de cada web, no solo un ícono
-                </h2>
               </div>
               <div className="flex flex-wrap items-center gap-2">
                 <Tooltip>
@@ -206,7 +249,6 @@ export function HomeScreen() {
                       <Button
                         variant="outline"
                         size="icon-sm"
-                        className="border-white/10 bg-white/5 text-white hover:bg-white/10"
                         aria-label="Buscar en favoritos"
                         onClick={() => setSearchOpen(true)}
                       />
@@ -223,7 +265,6 @@ export function HomeScreen() {
                   variant="outline"
                   size="sm"
                   spacing={0}
-                  className="border border-white/10 bg-white/5"
                   value={[view]}
                   onValueChange={(groupValue) => {
                     const next = groupValue[0]
@@ -246,7 +287,6 @@ export function HomeScreen() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="border-white/10 bg-white/5 text-white hover:bg-white/10"
                   onClick={() => {
                     update(addFolder)
                     toast.success("Carpeta creada. Arrastrá sitios adentro.")
@@ -288,7 +328,7 @@ export function HomeScreen() {
             />
           </>
         ) : (
-          <Empty className="border border-white/10 bg-white/4">
+          <Empty className="border border-border bg-card/40">
             <EmptyHeader>
               <EmptyMedia variant="icon">
                 <BookmarkPlusIcon />
@@ -344,6 +384,10 @@ export function HomeScreen() {
           }}
         />
       ) : null}
+      <CustomizePanel
+        open={customizeOpen}
+        onClose={() => setCustomizeOpen(false)}
+      />
     </div>
   )
 }

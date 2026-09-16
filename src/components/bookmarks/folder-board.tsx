@@ -168,7 +168,7 @@ export function FolderBoard({
     >
       <SortableContext items={folderIds} strategy={rectSortingStrategy}>
         {query.trim() && visibleCount === 0 ? (
-          <Empty className="mb-4 border border-white/10 bg-white/4">
+          <Empty className="mb-4 border border-border bg-card/40">
             <EmptyHeader>
               <EmptyMedia variant="icon">
                 <BookmarkIcon />
