@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# nexo — tu búsqueda, tus sitios
 
-## Getting Started
+¡Bienvenido a **nexo**!
 
-First, run the development server:
+nexo es un buscador sencillo y eficiente diseñado para facilitarte la vida: puedes buscar en Google y acceder rápidamente a tus sitios favoritos de Chrome —todo, a un solo scroll y organizado como prefieras.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ¿Cómo funciona nexo?
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Barra de búsqueda central**
+  - Busca directamente en Google, sin pasos intermedios ni distracciones.
+  - Los resultados se muestran de manera rápida y sencilla.
+2. **Tus favoritos siempre a mano**
+  - Accede a tus marcadores favoritos de Chrome sin salir de la página principal.
+  - Todo se muestra de forma clara y organizada: tus sitios preferidos, a un solo clic.
+3. **Organización personalizada**
+  - Agrupa tus sitios favoritos como quieras, para que encuentres lo que necesitas en segundos.
+  - Pensado para quienes quieren todo a la vista, pero sin abrumarse.
+4. **Diseño oscuro y enfoque minimalista**
+  - Interfaz moderna y agradable a la vista, con soporte para modo oscuro automático.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ¿Para quién es esto?
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Para quienes quieren buscar y navegar sin distracciones.
+- Si usás mucho tus favoritos y te molesta ir a otra pestaña o menú, nexo es para vos.
+- Ideal para quienes priorizan la velocidad, el orden y la simplicidad.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## ¿Cómo empiezo?
+
+1. **Abrí la aplicación** (o instálala si aún no lo hiciste)
+2. Escribí lo que quieras buscar o hacé clic en tus favoritos
+3. ¡Listo! Todo lo importante, siempre al alcance de la mano.
+
+---
+
+> “Buscá en Google y tené tus favoritos de Chrome a un scroll, organizados como quieras.”
+
+¡Probá nexo y descubrí una nueva forma de buscar y organizar tus sitios!

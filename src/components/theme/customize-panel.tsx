@@ -246,6 +246,51 @@ export function CustomizePanel({
                 className="size-4 accent-primary"
               />
             </label>
+            <label className="flex items-center justify-between gap-3 text-sm">
+              <span>Reloj</span>
+              <input
+                type="checkbox"
+                checked={appearance.showClock}
+                onChange={(event) => patch({ showClock: event.target.checked })}
+                className="size-4 accent-primary"
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3 text-sm">
+              <span>Clima</span>
+              <input
+                type="checkbox"
+                checked={appearance.showWeather}
+                onChange={(event) => patch({ showWeather: event.target.checked })}
+                className="size-4 accent-primary"
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3 text-sm">
+              <span>Bloque Hoy</span>
+              <input
+                type="checkbox"
+                checked={appearance.showToday}
+                onChange={(event) => patch({ showToday: event.target.checked })}
+                className="size-4 accent-primary"
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3 text-sm">
+              <span>Apps de trabajo</span>
+              <input
+                type="checkbox"
+                checked={appearance.showWorkApps}
+                onChange={(event) => patch({ showWorkApps: event.target.checked })}
+                className="size-4 accent-primary"
+              />
+            </label>
+            <label className="flex items-center justify-between gap-3 text-sm">
+              <span>Chat IA</span>
+              <input
+                type="checkbox"
+                checked={appearance.showAi}
+                onChange={(event) => patch({ showAi: event.target.checked })}
+                className="size-4 accent-primary"
+              />
+            </label>
           </section>
         </div>
       </aside>

@@ -42,6 +42,11 @@ export function loadAppearance(): Appearance {
           : DEFAULT_APPEARANCE.radius,
       showGmail: parsed.showGmail ?? true,
       showImages: parsed.showImages ?? true,
+      showClock: parsed.showClock ?? true,
+      showWeather: parsed.showWeather ?? true,
+      showToday: parsed.showToday ?? true,
+      showWorkApps: parsed.showWorkApps ?? true,
+      showAi: parsed.showAi ?? true,
     }
   } catch {
     return DEFAULT_APPEARANCE

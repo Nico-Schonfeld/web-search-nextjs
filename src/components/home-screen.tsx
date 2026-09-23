@@ -14,6 +14,7 @@ import {
   PanelsTopLeftIcon,
   RotateCcwIcon,
   SearchIcon,
+  SparklesIcon,
   UploadIcon,
 } from "lucide-react"
 import { toast } from "sonner"
@@ -28,6 +29,10 @@ import { ShortcutRow } from "@/components/search/shortcut-row"
 import { Wordmark } from "@/components/search/wordmark"
 import { CustomizePanel } from "@/components/theme/customize-panel"
 import { useAppearance } from "@/components/theme/appearance-provider"
+import { AiPanel } from "@/components/today/ai-panel"
+import { ClockWeather } from "@/components/today/clock-weather"
+import { TodayBoard } from "@/components/today/today-board"
+import { WorkApps } from "@/components/today/work-apps"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -82,6 +87,7 @@ export function HomeScreen() {
   const [shortcutOpen, setShortcutOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [customizeOpen, setCustomizeOpen] = useState(false)
+  const [aiOpen, setAiOpen] = useState(false)
   const [focusedFolderId, setFocusedFolderId] = useState<string>()
   const [view, setView] = useState<BookmarkView>("cards")
 
@@ -107,7 +113,12 @@ export function HomeScreen() {
 
   return (
     <div className="flex min-h-full flex-1 flex-col">
-      <header className="flex items-center justify-end gap-1 px-3 py-2.5 sm:px-4">
+      <header className="flex items-center gap-3 px-3 py-2.5 sm:px-4">
+        <ClockWeather
+          showClock={appearance.showClock}
+          showWeather={appearance.showWeather}
+        />
+        <div className="ml-auto flex items-center gap-1">
         {appearance.showGmail ? (
           <Tooltip>
             <TooltipTrigger
@@ -138,6 +149,24 @@ export function HomeScreen() {
               <ImageIcon className="size-4" />
             </TooltipTrigger>
             <TooltipContent>Imágenes</TooltipContent>
+          </Tooltip>
+        ) : null}
+        {appearance.showWorkApps ? <WorkApps /> : null}
+        {appearance.showAi ? (
+          <Tooltip>
+            <TooltipTrigger
+              render={
+                <Button
+                  variant="ghost"
+                  size="icon-sm"
+                  aria-label="Chat de nexo"
+                  onClick={() => setAiOpen(true)}
+                />
+              }
+            >
+              <SparklesIcon />
+            </TooltipTrigger>
+            <TooltipContent>Chat IA</TooltipContent>
           </Tooltip>
         ) : null}
         <Tooltip>
@@ -214,9 +243,10 @@ export function HomeScreen() {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+        </div>
       </header>
 
-      <section className="flex flex-col items-center px-4 pt-[12vh] pb-16 sm:pt-[16vh]">
+      <section className="flex flex-col items-center px-4 pt-[5vh] pb-6 sm:pt-[8vh]">
         <Wordmark variant={appearance.wordmark} />
         <div className="mt-8 w-full max-w-xl">
           <SearchHero data={data} query={query} onQueryChange={setQuery} />
@@ -232,6 +262,8 @@ export function HomeScreen() {
           />
         ) : null}
       </section>
+
+      {ready && !query.trim() && appearance.showToday ? <TodayBoard /> : null}
 
       <section className="mx-auto w-full max-w-7xl flex-1 px-4 pb-20">
         {!ready ? null : data ? (
@@ -388,6 +420,7 @@ export function HomeScreen() {
         open={customizeOpen}
         onClose={() => setCustomizeOpen(false)}
       />
+      <AiPanel open={aiOpen} onClose={() => setAiOpen(false)} />
     </div>
   )
 }

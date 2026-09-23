@@ -49,6 +49,11 @@ export function AppearanceProvider({ children }: { children: React.ReactNode }) 
       appearanceFromPreset(id, {
         showGmail: current.showGmail,
         showImages: current.showImages,
+        showClock: current.showClock,
+        showWeather: current.showWeather,
+        showToday: current.showToday,
+        showWorkApps: current.showWorkApps,
+        showAi: current.showAi,
       })
     )
   }, [setAppearance])
@@ -58,6 +63,11 @@ export function AppearanceProvider({ children }: { children: React.ReactNode }) 
       appearanceFromPreset(current.preset, {
         showGmail: current.showGmail,
         showImages: current.showImages,
+        showClock: current.showClock,
+        showWeather: current.showWeather,
+        showToday: current.showToday,
+        showWorkApps: current.showWorkApps,
+        showAi: current.showAi,
       })
     )
   }, [setAppearance])

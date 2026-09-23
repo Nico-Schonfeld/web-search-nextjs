@@ -26,9 +26,23 @@ export type Appearance = {
   wordmark: WordmarkStyle
   showGmail: boolean
   showImages: boolean
+  showClock: boolean
+  showWeather: boolean
+  showToday: boolean
+  showWorkApps: boolean
+  showAi: boolean
 }
 
-export type ThemePreset = Omit<Appearance, "showGmail" | "showImages"> & {
+export type ThemePreset = Omit<
+  Appearance,
+  | "showGmail"
+  | "showImages"
+  | "showClock"
+  | "showWeather"
+  | "showToday"
+  | "showWorkApps"
+  | "showAi"
+> & {
   name: string
   description: string
   swatches: [string, string, string]

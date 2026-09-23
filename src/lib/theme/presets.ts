@@ -146,7 +146,16 @@ export function getPreset(id: ThemeId) {
 
 export function appearanceFromPreset(
   id: ThemeId,
-  keep?: Pick<Appearance, "showGmail" | "showImages">
+  keep?: Pick<
+    Appearance,
+    | "showGmail"
+    | "showImages"
+    | "showClock"
+    | "showWeather"
+    | "showToday"
+    | "showWorkApps"
+    | "showAi"
+  >
 ): Appearance {
   const preset = getPreset(id)
   return {
@@ -162,5 +171,10 @@ export function appearanceFromPreset(
     wordmark: preset.wordmark,
     showGmail: keep?.showGmail ?? true,
     showImages: keep?.showImages ?? true,
+    showClock: keep?.showClock ?? true,
+    showWeather: keep?.showWeather ?? true,
+    showToday: keep?.showToday ?? true,
+    showWorkApps: keep?.showWorkApps ?? true,
+    showAi: keep?.showAi ?? true,
   }
 }
