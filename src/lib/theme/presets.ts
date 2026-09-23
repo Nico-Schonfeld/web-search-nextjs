@@ -152,7 +152,9 @@ export function appearanceFromPreset(
     | "showImages"
     | "showClock"
     | "showWeather"
-    | "showToday"
+    | "showNext"
+    | "showAgenda"
+    | "showNotes"
     | "showWorkApps"
     | "showAi"
   >
@@ -173,7 +175,9 @@ export function appearanceFromPreset(
     showImages: keep?.showImages ?? true,
     showClock: keep?.showClock ?? true,
     showWeather: keep?.showWeather ?? true,
-    showToday: keep?.showToday ?? true,
+    showNext: keep?.showNext ?? false,
+    showAgenda: keep?.showAgenda ?? false,
+    showNotes: keep?.showNotes ?? false,
     showWorkApps: keep?.showWorkApps ?? true,
     showAi: keep?.showAi ?? true,
   }

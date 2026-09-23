@@ -28,7 +28,9 @@ export type Appearance = {
   showImages: boolean
   showClock: boolean
   showWeather: boolean
-  showToday: boolean
+  showNext: boolean
+  showAgenda: boolean
+  showNotes: boolean
   showWorkApps: boolean
   showAi: boolean
 }
@@ -39,7 +41,9 @@ export type ThemePreset = Omit<
   | "showImages"
   | "showClock"
   | "showWeather"
-  | "showToday"
+  | "showNext"
+  | "showAgenda"
+  | "showNotes"
   | "showWorkApps"
   | "showAi"
 > & {

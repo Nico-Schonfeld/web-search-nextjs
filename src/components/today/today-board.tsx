@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToday } from "@/hooks/use-today"
 import { relativeWhen } from "@/lib/today/storage"
+import { cn } from "@/lib/utils"
 
 function defaultDateTime() {
   const now = new Date()
@@ -22,14 +23,33 @@ function defaultDateTime() {
   return local.toISOString().slice(0, 16)
 }
 
-export function TodayBoard() {
+export function TodayBoard({
+  showNext,
+  showAgenda,
+  showNotes,
+}: {
+  showNext: boolean
+  showAgenda: boolean
+  showNotes: boolean
+}) {
   const { notes, setNotes, upcoming, nextEvent, addEvent, removeEvent } =
     useToday()
   const [title, setTitle] = useState("")
   const [start, setStart] = useState(defaultDateTime)
+  const visible = [showNext, showAgenda, showNotes].filter(Boolean).length
+
+  if (visible === 0) return null
 
   return (
-    <section className="mx-auto mb-6 grid w-full max-w-7xl gap-3 px-4 md:grid-cols-3">
+    <section
+      className={cn(
+        "mx-auto mb-6 grid w-full gap-3 px-4",
+        visible === 1 && "max-w-xl",
+        visible === 2 && "max-w-4xl md:grid-cols-2",
+        visible === 3 && "max-w-7xl md:grid-cols-3"
+      )}
+    >
+      {showNext ? (
       <Card size="sm" className="bg-card">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-muted-foreground">
@@ -68,7 +88,9 @@ export function TodayBoard() {
           )}
         </CardContent>
       </Card>
+      ) : null}
 
+      {showAgenda ? (
       <Card size="sm" className="bg-card">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-muted-foreground">
@@ -136,7 +158,9 @@ export function TodayBoard() {
           </ul>
         </CardContent>
       </Card>
+      ) : null}
 
+      {showNotes ? (
       <Card size="sm" className="bg-card">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-muted-foreground">
@@ -153,6 +177,7 @@ export function TodayBoard() {
           />
         </CardContent>
       </Card>
+      ) : null}
     </section>
   )
 }

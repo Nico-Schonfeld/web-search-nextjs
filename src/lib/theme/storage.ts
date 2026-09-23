@@ -44,7 +44,9 @@ export function loadAppearance(): Appearance {
       showImages: parsed.showImages ?? true,
       showClock: parsed.showClock ?? true,
       showWeather: parsed.showWeather ?? true,
-      showToday: parsed.showToday ?? true,
+      showNext: parsed.showNext ?? false,
+      showAgenda: parsed.showAgenda ?? false,
+      showNotes: parsed.showNotes ?? false,
       showWorkApps: parsed.showWorkApps ?? true,
       showAi: parsed.showAi ?? true,
     }

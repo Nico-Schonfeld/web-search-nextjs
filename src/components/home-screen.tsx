@@ -263,7 +263,13 @@ export function HomeScreen() {
         ) : null}
       </section>
 
-      {ready && !query.trim() && appearance.showToday ? <TodayBoard /> : null}
+      {ready && !query.trim() ? (
+        <TodayBoard
+          showNext={appearance.showNext}
+          showAgenda={appearance.showAgenda}
+          showNotes={appearance.showNotes}
+        />
+      ) : null}
 
       <section className="mx-auto w-full max-w-7xl flex-1 px-4 pb-20">
         {!ready ? null : data ? (

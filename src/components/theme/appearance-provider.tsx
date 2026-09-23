@@ -51,7 +51,9 @@ export function AppearanceProvider({ children }: { children: React.ReactNode }) 
         showImages: current.showImages,
         showClock: current.showClock,
         showWeather: current.showWeather,
-        showToday: current.showToday,
+        showNext: current.showNext,
+        showAgenda: current.showAgenda,
+        showNotes: current.showNotes,
         showWorkApps: current.showWorkApps,
         showAi: current.showAi,
       })
@@ -65,7 +67,9 @@ export function AppearanceProvider({ children }: { children: React.ReactNode }) 
         showImages: current.showImages,
         showClock: current.showClock,
         showWeather: current.showWeather,
-        showToday: current.showToday,
+        showNext: current.showNext,
+        showAgenda: current.showAgenda,
+        showNotes: current.showNotes,
         showWorkApps: current.showWorkApps,
         showAi: current.showAi,
       })

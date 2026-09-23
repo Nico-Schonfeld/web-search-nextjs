@@ -264,15 +264,38 @@ export function CustomizePanel({
                 className="size-4 accent-primary"
               />
             </label>
-            <label className="flex items-center justify-between gap-3 text-sm">
-              <span>Bloque Hoy</span>
-              <input
-                type="checkbox"
-                checked={appearance.showToday}
-                onChange={(event) => patch({ showToday: event.target.checked })}
-                className="size-4 accent-primary"
-              />
-            </label>
+            <div className="space-y-3 border-t border-border pt-3">
+              <h4 className="text-xs font-medium tracking-[0.16em] text-muted-foreground uppercase">
+                Hoy
+              </h4>
+              <label className="flex items-center justify-between gap-3 text-sm">
+                <span>Próximo</span>
+                <input
+                  type="checkbox"
+                  checked={appearance.showNext}
+                  onChange={(event) => patch({ showNext: event.target.checked })}
+                  className="size-4 accent-primary"
+                />
+              </label>
+              <label className="flex items-center justify-between gap-3 text-sm">
+                <span>Agenda</span>
+                <input
+                  type="checkbox"
+                  checked={appearance.showAgenda}
+                  onChange={(event) => patch({ showAgenda: event.target.checked })}
+                  className="size-4 accent-primary"
+                />
+              </label>
+              <label className="flex items-center justify-between gap-3 text-sm">
+                <span>Notas del día</span>
+                <input
+                  type="checkbox"
+                  checked={appearance.showNotes}
+                  onChange={(event) => patch({ showNotes: event.target.checked })}
+                  className="size-4 accent-primary"
+                />
+              </label>
+            </div>
             <label className="flex items-center justify-between gap-3 text-sm">
               <span>Apps de trabajo</span>
               <input
